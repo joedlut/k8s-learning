@@ -85,6 +85,7 @@ kubeadm config images list
 kubeadm config images pull --image-repository=registry.aliyuncs.com/google_containers
 
 #worker node stop here, replace the ip with the ip of the master node
+# worker结点执行到这里结束，ip替换成master node结点的ip
 ip=`ifconfig ens33 | grep broadcast | awk '{print $2}'`
 cat <<EOF >>/etc/hosts
 $ip k8smaster.example.net
@@ -94,7 +95,8 @@ EOF
 ##############master node continue########################################
 kubeadm init --control-plane-endpoint=k8smaster.example.net  --image-repository=registry.aliyuncs.com/google_containers
 
-export KUBECONFIG=/etc/kubernetes/admin.conf
+#export KUBECONFIG=/etc/kubernetes/admin.conf
+#这里执行无效，需要在安装完成之后 手动在一个脚本文件source 
 
 kubeadm token create --print-join-command
 
