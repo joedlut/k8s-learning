@@ -101,8 +101,3 @@ kubeadm token create --print-join-command
 wget https://docs.tigera.io/archive/v3.25/manifests/calico.yaml
 sed -i 's/image: docker.io\//image: /g' calico.yaml
 kubectl create -f calico.yaml
-
-
-
-
-
