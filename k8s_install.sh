@@ -1,4 +1,11 @@
 #!/bin/bash
+#author: joedlut
+#date:2023-05-07
+########################################################
+#     environment ubuntu 22.10                         #
+#                                                      #
+#                                                      #
+########################################################
 
 systemctl stop ufw
 systemctl disable ufw
@@ -77,11 +84,14 @@ systemctl enable kubelet
 kubeadm config images list
 kubeadm config images pull --image-repository=registry.aliyuncs.com/google_containers
 
+#worker node stop here, replace the ip with the ip of the master node
 ip=`ifconfig ens33 | grep broadcast | awk '{print $2}'`
 cat <<EOF >>/etc/hosts
 $ip k8smaster.example.net
-EOF
+EOF 
 
+
+##############master node continue########################################
 kubeadm init --control-plane-endpoint=k8smaster.example.net  --image-repository=registry.aliyuncs.com/google_containers
 
 export KUBECONFIG=/etc/kubernetes/admin.conf
