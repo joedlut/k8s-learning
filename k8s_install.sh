@@ -98,6 +98,7 @@ kubeadm init --control-plane-endpoint=k8smaster.example.net  --image-repository=
 #export KUBECONFIG=/etc/kubernetes/admin.conf
 #这里执行无效，需要在安装完成之后 手动在一个脚本文件source 
 
+# 在worker结点执行 这里生成的加入集群的命令
 kubeadm token create --print-join-command
 
 wget https://docs.tigera.io/archive/v3.25/manifests/calico.yaml
