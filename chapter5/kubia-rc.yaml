@@ -5,11 +5,11 @@ metadata:
 spec:
   replicas: 3
   selector:
-    app: kubia
+    app: kubia-with-livenessprobe
   template:
     metadata:
       labels:
-        app: kubia
+        app: kubia-with-livenessprobe
     spec:
       containers:
       - name: kubia
