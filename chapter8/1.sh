@@ -1,5 +1,7 @@
 #!/bin/bash
 
+kubectl exec -it curl  bash
+
 ls -l  /var/run/secrets/kubernetes.io/serviceaccount
 
 
