@@ -1,0 +1,9 @@
+apt -y install nfs-commont nfs-server
+
+cat /etc/exports
+/mnt/nfsdata 192.168.88.138(rw,sync,no_subtree_check)
+/mnt/nfsdata 192.168.88.141(rw,sync,no_subtree_check)
+
+systemctl restart nfs-kernel-server
+
+showmount -e 
