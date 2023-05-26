@@ -1,0 +1,28 @@
+root@joedlut-virtual-machine:/home/joedlut/k8s-learning/chapter10# kubectl run -it srvlookup --image=tutum/dnsutils --rm --restart=Never -- dig SRV kubia.default.svc.cluster.local
+
+; <<>> DiG 9.9.5-3ubuntu0.2-Ubuntu <<>> SRV kubia.default.svc.cluster.local
+;; global options: +cmd
+;; Got answer:
+;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 45001
+;; flags: qr aa rd; QUERY: 1, ANSWER: 2, AUTHORITY: 0, ADDITIONAL: 3
+;; WARNING: recursion requested but not available
+
+;; OPT PSEUDOSECTION:
+; EDNS: version: 0, flags:; udp: 4096
+;; QUESTION SECTION:
+;kubia.default.svc.cluster.local. IN    SRV
+
+;; ANSWER SECTION:
+kubia.default.svc.cluster.local. 30 IN  SRV     0 50 80 kubia-1.kubia.default.svc.cluster.local.
+kubia.default.svc.cluster.local. 30 IN  SRV     0 50 80 kubia-0.kubia.default.svc.cluster.local.
+
+;; ADDITIONAL SECTION:
+kubia-1.kubia.default.svc.cluster.local. 30 IN A 172.16.50.214
+kubia-0.kubia.default.svc.cluster.local. 30 IN A 172.16.219.66
+
+;; Query time: 7 msec
+;; SERVER: 10.96.0.10#53(10.96.0.10)
+;; WHEN: Fri May 26 15:07:18 UTC 2023
+;; MSG SIZE  rcvd: 350
+
+pod "srvlookup" deleted
