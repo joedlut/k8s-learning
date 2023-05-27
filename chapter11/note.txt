@@ -1,0 +1,19 @@
+root@joedlut-virtual-machine:/home/joedlut# kubectl get po -o custom-columns=POD:metadata.name,NODE:spec.nodeName --sort-by spec.nodeName -n kube-system
+POD                                               NODE
+kube-apiserver-joedlut-virtual-machine            joedlut-virtual-machine
+kube-proxy-hc5h8                                  joedlut-virtual-machine
+calico-node-7szg2                                 joedlut-virtual-machine
+kube-controller-manager-joedlut-virtual-machine   joedlut-virtual-machine
+coredns-7f6cbbb7b8-fgwv8                          joedlut-virtual-machine
+coredns-7f6cbbb7b8-zgvbf                          joedlut-virtual-machine
+etcd-joedlut-virtual-machine                      joedlut-virtual-machine
+calico-kube-controllers-74df58766b-2zrg5          joedlut-virtual-machine
+kube-scheduler-joedlut-virtual-machine            joedlut-virtual-machine
+calico-node-xwc8d                                 k8s-worker-node1
+kube-proxy-b4pbj                                  k8s-worker-node1
+calico-node-2qznl                                 k8s-worker-node2
+kube-proxy-vcpxs                                  k8s-worker-node2
+
+
+
+
