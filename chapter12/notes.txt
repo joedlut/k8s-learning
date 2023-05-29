@@ -29,3 +29,22 @@ eyJhbGciOiJSUzI1NiIsImtpZCI6IkpqLU9LYXpRTnF5SE5ZVnpqSjNfRzdNVy1RVVVlcG5YNlJjM3B0
 
 root@joedlut-virtual-machine:/home/joedlut/k8s-learning/chapter12# k exec -it curl-custom-sa -c main --  cat /var/run/secrets/kubernetes.io/serviceaccount/token 
 eyJhbGciOiJSUzI1NiIsImtpZCI6IkpqLU9LYXpRTnF5SE5ZVnpqSjNfRzdNVy1RVVVlcG5YNlJjM3B0T1RqX1UifQ.eyJhdWQiOlsiaHR0cHM6Ly9rdWJlcm5ldGVzLmRlZmF1bHQuc3ZjLmNsdXN0ZXIubG9jYWwiXSwiZXhwIjoxNzE2OTEwMjYxLCJpYXQiOjE2ODUzNzQyNjEsImlzcyI6Imh0dHBzOi8va3ViZXJuZXRlcy5kZWZhdWx0LnN2Yy5jbHVzdGVyLmxvY2FsIiwia3ViZXJuZXRlcy5pbyI6eyJuYW1lc3BhY2UiOiJkZWZhdWx0IiwicG9kIjp7Im5hbWUiOiJjdXJsLWN1c3RvbS1zYSIsInVpZCI6IjM1MzAwZDUxLTI2MWYtNGI2NC1iNGZiLTNkM2EwNTM4Zjk1NCJ9LCJzZXJ2aWNlYWNjb3VudCI6eyJuYW1lIjoiZm9vIiwidWlkIjoiMjM0MGU1MzMtYzIyOC00ZjMxLWJjZTQtZjBlZmEwNWEyNzk3In0sIndhcm5hZnRlciI6MTY4NTM3Nzg2OH0sIm5iZiI6MTY4NTM3NDI2MSwic3ViIjoic3lzdGVtOnNlcnZpY2VhY2NvdW50OmRlZmF1bHQ6Zm9vIn0.D_I0lhLV_2OL_q4PDSW4c-64Mx7bmrUak0d0LUhGBhb47s9LUBTHVoeWJpNjdyLPhHuoGlF4e8dDClut6tz4cVs97z-x2205ZRIE0BU0JIC16zjL87ZD9Tw0RItQpy3nmk3SDLSojNfXMT8UhrhswNWftjoVgpoDMAFMrkHT2d9mCh3mb5n3RU3Jf04gcMb95pxpAJTJlcYKntap9y10hj3e3H3OYc1Z1pDbxQDpw6Hak3fcV4r0eLAc-I7U_0_VuXb0gz8QOtoAp-MVjNZnN-VPBdXfJkWSi-pCIAA4_Epe5XY2E8eJje1MzS62Jx9-0-SPr6a_Cw0NgvQE5wMbp
+
+
+
+root@joedlut-virtual-machine:/home/joedlut/k8s-learning/chapter12# k exec -it test -n bar  -- sh
+/ # curl localhost:8001/api/namespaces/bar/services
+{
+  "kind": "Status",
+  "apiVersion": "v1",
+  "metadata": {
+    
+  },
+  "status": "Failure",
+  "message": "bar \"services\" is forbidden: User \"system:serviceaccount:bar:default\" cannot get resource \"bar\" in API group \"\" at the cluster scope",
+  "reason": "Forbidden",
+  "details": {
+    "name": "services",
+    "kind": "bar"
+  },
+  "code": 403
