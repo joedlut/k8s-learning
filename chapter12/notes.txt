@@ -1,0 +1,26 @@
+root@joedlut-virtual-machine:/home/joedlut/k8s-learning/chapter12# k describe sa foo
+Name:                foo
+Namespace:           default
+Labels:              <none>
+Annotations:         <none>
+Image pull secrets:  <none>
+Mountable secrets:   foo-token-6szgr
+Tokens:              foo-token-6szgr
+Events:              <none>
+root@joedlut-virtual-machine:/home/joedlut/k8s-learning/chapter12# k get secret foo-token-6szgr
+NAME              TYPE                                  DATA   AGE
+foo-token-6szgr   kubernetes.io/service-account-token   3      25s
+root@joedlut-virtual-machine:/home/joedlut/k8s-learning/chapter12# k describe  secret foo-token-6szgr
+Name:         foo-token-6szgr
+Namespace:    default
+Labels:       <none>
+Annotations:  kubernetes.io/service-account.name: foo
+              kubernetes.io/service-account.uid: 2340e533-c228-4f31-bce4-f0efa05a2797
+
+Type:  kubernetes.io/service-account-token
+
+Data
+====
+ca.crt:     1099 bytes
+namespace:  7 bytes
+token:      eyJhbGciOiJSUzI1NiIsImtpZCI6IkpqLU9LYXpRTnF5SE5ZVnpqSjNfRzdNVy1RVVVlcG5YNlJjM3B0T1RqX1UifQ.eyJpc3MiOiJrdWJlcm5ldGVzL3NlcnZpY2VhY2NvdW50Iiwia3ViZXJuZXRlcy5pby9zZXJ2aWNlYWNjb3VudC9uYW1lc3BhY2UiOiJkZWZhdWx0Iiwia3ViZXJuZXRlcy5pby9zZXJ2aWNlYWNjb3VudC9zZWNyZXQubmFtZSI6ImZvby10b2tlbi02c3pnciIsImt1YmVybmV0ZXMuaW8vc2VydmljZWFjY291bnQvc2VydmljZS1hY2NvdW50Lm5hbWUiOiJmb28iLCJrdWJlcm5ldGVzLmlvL3NlcnZpY2VhY2NvdW50L3NlcnZpY2UtYWNjb3VudC51aWQiOiIyMzQwZTUzMy1jMjI4LTRmMzEtYmNlNC1mMGVmYTA1YTI3OTciLCJzdWIiOiJzeXN0ZW06c2VydmljZWFjY291bnQ6ZGVmYXVsdDpmb28ifQ.SrZr0yhhtWoK4o2JEgvv86E-Yn3gMl6dU2_gzwlzjwx6-o58AhA_Svr42C1UOxuV-wzW-P_KKaQyrwjuuszzNOm70ln90NbFhQa4mHcypTf5sHuitBg-gRuL1fkTvTtcM3ckir66_Tf0xyuh-j8KyHDFmEaKVuj6lI-vaASDWnXlMTI_RfO0J7VOWKz9YQw5MTNjczScVWkq7ZmGjqeOgWHIySMfIYse58nVh5VVJhkLZpf-ND86OKAsipIDL7CZd0wbyTo2JO3_WlrypxEDc_xqF773f22ES7wqGlbkLbE6pEzByjO908tx8Z30gKpGvfXRgBqq9YVxfUWNvTOc0w
