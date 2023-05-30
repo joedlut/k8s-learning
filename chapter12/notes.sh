@@ -5,7 +5,11 @@ kubectl get sa
 kubectl create serviceaccount fo
 
 # 启用RBAC
-kubectl delete clusterrolebinding permissive-binding o
+kubectl delete clusterrolebinding permissive-binding
+
+#禁用RBAC
+kubectl create clusterrolebinding permissive-binding  --clusterrole=cluster-admin --group=system:serviceaccounts
+
 
 
 kubectl create clusterrolebinding cluster-admin-binding --clusterrole=cluster-admin --user=2532771263@qq.com
@@ -33,3 +37,10 @@ kubectl get clusterrole system:discovery -o yaml
 k get clusterrole view -o yaml
 
 kubectl create clusterrolebinding view-test --clusterrole=view --serviceaccount=foo:default
+
+
+k delete clusterrolebinding view-test
+k create rolebinding view-test --clusterrole=view --serviceaccount=foo:default -n foo
+
+k get clusterrolebindings
+k get clusterroles
