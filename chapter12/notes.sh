@@ -19,3 +19,17 @@ kubectl create rolebinding test --role=service-reader --serviceaccount=foo:defau
 
 #命令修改rolebinding 
  k edit rolebinding test -n foo
+
+
+kubectl create clusterrole pv-reader --verb=get,list --resource=persistentvolumes
+
+#错误
+kubectl create rolebinding pv-test --clusterrole=pv-reader --serviceaccount=foo:default -n foo
+#正确
+kubectl create clusterrolebinding pv-test --clusterrole=pv-reader --serviceaccount=foo:default 
+
+kubectl get clusterrole system:discovery -o yaml
+
+k get clusterrole view -o yaml
+
+kubectl create clusterrolebinding view-test --clusterrole=view --serviceaccount=foo:default
