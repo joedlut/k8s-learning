@@ -18,3 +18,41 @@ root@joedlut-virtual-machine:/home/joedlut/k8s-learning/chapter13#
 root@joedlut-virtual-machine:/home/joedlut/k8s-learning/chapter13# k exec pod-with-readonly-filesystem  -- touch /joedlut.txt
 touch: /joedlut.txt: Read-only file system
 command terminated with exit code 1
+
+
+oot@joedlut-virtual-machine:/home/joedlut/k8s-learning/chapter13# k exec -it  pod-with-shared-volume-fsgroup -c first -- sh
+/ $ id
+uid=1111 gid=0(root) groups=0(root),555,666,777
+/ $ ls -l |grep volume
+drwxrwsrwx    2 root     555           4096 Jun  1 16:00 volume
+/ $ ll
+sh: ll: not found
+/ $ ls
+bin     dev     etc     home    lib     media   mnt     opt     proc    root    run     sbin    srv     sys     tmp     usr     var     volume
+/ $ echo foo >/volume/foo.txt
+/ $ ls -l /volume
+total 4
+-rw-r--r--    1 1111     555              4 Jun  1 16:03 foo.txt
+/ $ echo bar /tmp/bar.txt
+bar /tmp/bar.txt
+/ $ ll /tmp 
+sh: ll: not found
+/ $ ls -l  /tmp 
+total 0
+/ $ ls -l  /tmp/
+total 0
+/ $ echo bar  > /tmp/bar.txt
+/ $ ls -l  /tmp/
+total 4
+-rw-r--r--    1 1111     root             4 Jun  1 16:17 bar.txt
+/ $ exit
+root@joedlut-virtual-machine:/home/joedlut/k8s-learning/chapter13# k exec -it  pod-with-shared-volume-fsgroup -c second -- sh
+/ $ cd /volume
+/volume $ ls
+foo.txt
+/volume $ cat foo.txt 
+foo
+/volume $ cd ..
+/ $ ls -l  /volume/
+total 4
+-rw-r--r--    1 1111     555              4 Jun  1 16:03 foo.txt
