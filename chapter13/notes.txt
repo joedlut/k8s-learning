@@ -4,3 +4,8 @@ date: can't set date: Operation not permitted
 
 root@joedlut-virtual-machine:/home/joedlut/k8s-learning/chapter13# k exec -it pod-add-settime-capability -- date +%T -s "12:00:01"
 12:00:01
+
+
+root@joedlut-virtual-machine:/home/joedlut/k8s-learning/chapter13# k exec -it pod-drop-chown-capability -- chown guest /tmp
+chown: /tmp: Operation not permitted
+command terminated with exit code 1
