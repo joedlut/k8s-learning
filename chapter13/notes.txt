@@ -9,3 +9,12 @@ root@joedlut-virtual-machine:/home/joedlut/k8s-learning/chapter13# k exec -it po
 root@joedlut-virtual-machine:/home/joedlut/k8s-learning/chapter13# k exec -it pod-drop-chown-capability -- chown guest /tmp
 chown: /tmp: Operation not permitted
 command terminated with exit code 1
+
+
+root@joedlut-virtual-machine:/home/joedlut/k8s-learning/chapter13# k exec pod-with-readonly-filesystem  -- touch /volume/test.txt
+root@joedlut-virtual-machine:/home/joedlut/k8s-learning/chapter13# 
+
+
+root@joedlut-virtual-machine:/home/joedlut/k8s-learning/chapter13# k exec pod-with-readonly-filesystem  -- touch /joedlut.txt
+touch: /joedlut.txt: Read-only file system
+command terminated with exit code 1
