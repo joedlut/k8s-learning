@@ -1,0 +1,6 @@
+root@joedlut-virtual-machine:/home/joedlut/k8s-learning/chapter13# k exec -it pod-with-defaults -- date +%T  -s "12:00:00"
+date: can't set date: Operation not permitted
+12:00:00
+
+root@joedlut-virtual-machine:/home/joedlut/k8s-learning/chapter13# k exec -it pod-add-settime-capability -- date +%T -s "12:00:01"
+12:00:01
