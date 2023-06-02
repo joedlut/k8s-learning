@@ -2,7 +2,7 @@
 
 kubectl get sa
 
-kubectl create serviceaccount fo
+kubectl create serviceaccount foo
 
 # 启用RBAC
 kubectl delete clusterrolebinding permissive-binding
