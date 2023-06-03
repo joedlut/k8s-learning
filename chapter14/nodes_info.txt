@@ -1,0 +1,258 @@
+Name:               joedlut-virtual-machine
+Roles:              control-plane,master
+Labels:             beta.kubernetes.io/arch=amd64
+                    beta.kubernetes.io/os=linux
+                    kubernetes.io/arch=amd64
+                    kubernetes.io/hostname=joedlut-virtual-machine
+                    kubernetes.io/os=linux
+                    node-role.kubernetes.io/control-plane=
+                    node-role.kubernetes.io/master=
+                    node.kubernetes.io/exclude-from-external-load-balancers=
+Annotations:        kubeadm.alpha.kubernetes.io/cri-socket: /var/run/dockershim.sock
+                    node.alpha.kubernetes.io/ttl: 0
+                    projectcalico.org/IPv4Address: 192.168.88.138/24
+                    projectcalico.org/IPv4IPIPTunnelAddr: 172.16.174.0
+                    volumes.kubernetes.io/controller-managed-attach-detach: true
+CreationTimestamp:  Fri, 28 Apr 2023 07:47:42 +0800
+Taints:             node-role.kubernetes.io/master:NoSchedule
+Unschedulable:      false
+Lease:
+  HolderIdentity:  joedlut-virtual-machine
+  AcquireTime:     <unset>
+  RenewTime:       Sat, 03 Jun 2023 23:33:22 +0800
+Conditions:
+  Type                 Status  LastHeartbeatTime                 LastTransitionTime                Reason                       Message
+  ----                 ------  -----------------                 ------------------                ------                       -------
+  NetworkUnavailable   False   Fri, 26 May 2023 23:01:56 +0800   Fri, 26 May 2023 23:01:56 +0800   CalicoIsUp                   Calico is running on this node
+  MemoryPressure       False   Sat, 03 Jun 2023 23:31:43 +0800   Wed, 17 May 2023 19:19:28 +0800   KubeletHasSufficientMemory   kubelet has sufficient memory available
+  DiskPressure         False   Sat, 03 Jun 2023 23:31:43 +0800   Wed, 17 May 2023 19:19:28 +0800   KubeletHasNoDiskPressure     kubelet has no disk pressure
+  PIDPressure          False   Sat, 03 Jun 2023 23:31:43 +0800   Wed, 17 May 2023 19:19:28 +0800   KubeletHasSufficientPID      kubelet has sufficient PID available
+  Ready                True    Sat, 03 Jun 2023 23:31:43 +0800   Thu, 25 May 2023 23:18:17 +0800   KubeletReady                 kubelet is posting ready status. AppArmor enabled
+Addresses:
+  InternalIP:  192.168.88.138
+  Hostname:    joedlut-virtual-machine
+Capacity:
+  cpu:                8
+  ephemeral-storage:  46975772Ki
+  hugepages-1Gi:      0
+  hugepages-2Mi:      0
+  memory:             3982148Ki
+  pods:               110
+Allocatable:
+  cpu:                8
+  ephemeral-storage:  43292871404
+  hugepages-1Gi:      0
+  hugepages-2Mi:      0
+  memory:             3879748Ki
+  pods:               110
+System Info:
+  Machine ID:                 5147fafdb8734040be2179966f4d13b9
+  System UUID:                7feb4d56-34b5-1f11-e24e-9f702879926e
+  Boot ID:                    17ea4b5c-6987-4937-9807-e289f8926dc6
+  Kernel Version:             5.19.0-41-generic
+  OS Image:                   Ubuntu 22.10
+  Operating System:           linux
+  Architecture:               amd64
+  Container Runtime Version:  docker://23.0.6
+  Kubelet Version:            v1.22.4
+  Kube-Proxy Version:         v1.22.4
+Non-terminated Pods:          (9 in total)
+  Namespace                   Name                                               CPU Requests  CPU Limits  Memory Requests  Memory Limits  Age
+  ---------                   ----                                               ------------  ----------  ---------------  -------------  ---
+  kube-system                 calico-kube-controllers-74df58766b-2zrg5           0 (0%)        0 (0%)      0 (0%)           0 (0%)         36d
+  kube-system                 calico-node-7szg2                                  250m (3%)     0 (0%)      0 (0%)           0 (0%)         8d
+  kube-system                 coredns-7f6cbbb7b8-fgwv8                           100m (1%)     0 (0%)      70Mi (1%)        170Mi (4%)     36d
+  kube-system                 coredns-7f6cbbb7b8-zgvbf                           100m (1%)     0 (0%)      70Mi (1%)        170Mi (4%)     36d
+  kube-system                 etcd-joedlut-virtual-machine                       100m (1%)     0 (0%)      100Mi (2%)       0 (0%)         36d
+  kube-system                 kube-apiserver-joedlut-virtual-machine             250m (3%)     0 (0%)      0 (0%)           0 (0%)         36d
+  kube-system                 kube-controller-manager-joedlut-virtual-machine    200m (2%)     0 (0%)      0 (0%)           0 (0%)         36d
+  kube-system                 kube-proxy-hc5h8                                   0 (0%)        0 (0%)      0 (0%)           0 (0%)         36d
+  kube-system                 kube-scheduler-joedlut-virtual-machine             100m (1%)     0 (0%)      0 (0%)           0 (0%)         7d23h
+Allocated resources:
+  (Total limits may be over 100 percent, i.e., overcommitted.)
+  Resource           Requests     Limits
+  --------           --------     ------
+  cpu                1100m (13%)  0 (0%)
+  memory             240Mi (6%)   340Mi (8%)
+  ephemeral-storage  0 (0%)       0 (0%)
+  hugepages-1Gi      0 (0%)       0 (0%)
+  hugepages-2Mi      0 (0%)       0 (0%)
+Events:              <none>
+
+
+Name:               k8s-worker-node1
+Roles:              <none>
+Labels:             beta.kubernetes.io/arch=amd64
+                    beta.kubernetes.io/os=linux
+                    kubernetes.io/arch=amd64
+                    kubernetes.io/hostname=k8s-worker-node1
+                    kubernetes.io/os=linux
+Annotations:        kubeadm.alpha.kubernetes.io/cri-socket: /var/run/dockershim.sock
+                    node.alpha.kubernetes.io/ttl: 0
+                    projectcalico.org/IPv4Address: 192.168.88.139/24
+                    projectcalico.org/IPv4IPIPTunnelAddr: 172.16.50.192
+                    volumes.kubernetes.io/controller-managed-attach-detach: true
+CreationTimestamp:  Thu, 01 Jun 2023 23:29:53 +0800
+Taints:             <none>
+Unschedulable:      false
+Lease:
+  HolderIdentity:  k8s-worker-node1
+  AcquireTime:     <unset>
+  RenewTime:       Fri, 02 Jun 2023 04:27:42 +0800
+Conditions:
+  Type                 Status  LastHeartbeatTime                 LastTransitionTime                Reason                       Message
+  ----                 ------  -----------------                 ------------------                ------                       -------
+  NetworkUnavailable   False   Fri, 02 Jun 2023 04:06:13 +0800   Fri, 02 Jun 2023 04:06:13 +0800   CalicoIsUp                   Calico is running on this node
+  MemoryPressure       False   Fri, 02 Jun 2023 04:27:16 +0800   Fri, 02 Jun 2023 04:06:04 +0800   KubeletHasSufficientMemory   kubelet has sufficient memory available
+  DiskPressure         False   Fri, 02 Jun 2023 04:27:16 +0800   Fri, 02 Jun 2023 04:06:04 +0800   KubeletHasNoDiskPressure     kubelet has no disk pressure
+  PIDPressure          False   Fri, 02 Jun 2023 04:27:16 +0800   Fri, 02 Jun 2023 04:06:04 +0800   KubeletHasSufficientPID      kubelet has sufficient PID available
+  Ready                True    Fri, 02 Jun 2023 04:27:16 +0800   Fri, 02 Jun 2023 04:06:04 +0800   KubeletReady                 kubelet is posting ready status. AppArmor enabled
+Addresses:
+  InternalIP:  192.168.88.139
+  Hostname:    k8s-worker-node1
+Capacity:
+  cpu:                4
+  ephemeral-storage:  28719140Ki
+  hugepages-1Gi:      0
+  hugepages-2Mi:      0
+  memory:             1997996Ki
+  pods:               110
+Allocatable:
+  cpu:                4
+  ephemeral-storage:  26467559381
+  hugepages-1Gi:      0
+  hugepages-2Mi:      0
+  memory:             1895596Ki
+  pods:               110
+System Info:
+  Machine ID:                 a566e2520c7242f6ac3116301a81a309
+  System UUID:                9fdf4d56-f9dd-879c-afa9-10213e9ce9ce
+  Boot ID:                    9e3fbc82-f860-4933-98ad-a5c8bb3df019
+  Kernel Version:             6.2.0-20-generic
+  OS Image:                   Ubuntu 23.04
+  Operating System:           linux
+  Architecture:               amd64
+  Container Runtime Version:  docker://23.0.6
+  Kubelet Version:            v1.22.4
+  Kube-Proxy Version:         v1.22.4
+Non-terminated Pods:          (9 in total)
+  Namespace                   Name                              CPU Requests  CPU Limits  Memory Requests  Memory Limits  Age
+  ---------                   ----                              ------------  ----------  ---------------  -------------  ---
+  default                     pod-add-sysadmin-capability       0 (0%)        0 (0%)      0 (0%)           0 (0%)         32h
+  default                     pod-drop-chown-capability         0 (0%)        0 (0%)      0 (0%)           0 (0%)         47h
+  default                     pod-privileged-1                  0 (0%)        0 (0%)      0 (0%)           0 (0%)         32h
+  default                     pod-with-readonly-filesystem      0 (0%)        0 (0%)      0 (0%)           0 (0%)         47h
+  default                     pod-with-shared-volume            0 (0%)        0 (0%)      0 (0%)           0 (0%)         47h
+  default                     pod-with-shared-volume-fsgroup    0 (0%)        0 (0%)      0 (0%)           0 (0%)         47h
+  default                     requests-pod                      200m (5%)     0 (0%)      10Mi (0%)        0 (0%)         23m
+  kube-system                 calico-node-gvf99                 250m (6%)     0 (0%)      0 (0%)           0 (0%)         2d
+  kube-system                 kube-proxy-tpsnv                  0 (0%)        0 (0%)      0 (0%)           0 (0%)         2d
+Allocated resources:
+  (Total limits may be over 100 percent, i.e., overcommitted.)
+  Resource           Requests    Limits
+  --------           --------    ------
+  cpu                450m (11%)  0 (0%)
+  memory             10Mi (0%)   0 (0%)
+  ephemeral-storage  0 (0%)      0 (0%)
+  hugepages-1Gi      0 (0%)      0 (0%)
+  hugepages-2Mi      0 (0%)      0 (0%)
+Events:
+  Type    Reason                   Age                From        Message
+  ----    ------                   ----               ----        -------
+  Normal  Starting                 43h                kube-proxy  
+  Normal  NodeHasSufficientMemory  43h (x2 over 43h)  kubelet     Node k8s-worker-node1 status is now: NodeHasSufficientMemory
+  Normal  NodeHasNoDiskPressure    43h (x2 over 43h)  kubelet     Node k8s-worker-node1 status is now: NodeHasNoDiskPressure
+  Normal  NodeHasSufficientPID     43h (x2 over 43h)  kubelet     Node k8s-worker-node1 status is now: NodeHasSufficientPID
+  Normal  NodeAllocatableEnforced  43h                kubelet     Updated Node Allocatable limit across pods
+  Normal  NodeReady                43h                kubelet     Node k8s-worker-node1 status is now: NodeReady
+  Normal  Starting                 43h                kubelet     Starting kubelet.
+
+
+Name:               k8s-worker-node2
+Roles:              <none>
+Labels:             beta.kubernetes.io/arch=amd64
+                    beta.kubernetes.io/os=linux
+                    kubernetes.io/arch=amd64
+                    kubernetes.io/hostname=k8s-worker-node2
+                    kubernetes.io/os=linux
+Annotations:        kubeadm.alpha.kubernetes.io/cri-socket: /var/run/dockershim.sock
+                    node.alpha.kubernetes.io/ttl: 0
+                    projectcalico.org/IPv4Address: 192.168.88.141/24
+                    projectcalico.org/IPv4IPIPTunnelAddr: 172.16.219.90
+                    volumes.kubernetes.io/controller-managed-attach-detach: true
+CreationTimestamp:  Thu, 01 Jun 2023 23:27:43 +0800
+Taints:             <none>
+Unschedulable:      false
+Lease:
+  HolderIdentity:  k8s-worker-node2
+  AcquireTime:     <unset>
+  RenewTime:       Fri, 02 Jun 2023 00:56:18 +0800
+Conditions:
+  Type                 Status  LastHeartbeatTime                 LastTransitionTime                Reason                       Message
+  ----                 ------  -----------------                 ------------------                ------                       -------
+  NetworkUnavailable   False   Fri, 02 Jun 2023 00:35:13 +0800   Fri, 02 Jun 2023 00:35:13 +0800   CalicoIsUp                   Calico is running on this node
+  MemoryPressure       False   Fri, 02 Jun 2023 00:55:51 +0800   Fri, 02 Jun 2023 00:35:08 +0800   KubeletHasSufficientMemory   kubelet has sufficient memory available
+  DiskPressure         False   Fri, 02 Jun 2023 00:55:51 +0800   Fri, 02 Jun 2023 00:35:08 +0800   KubeletHasNoDiskPressure     kubelet has no disk pressure
+  PIDPressure          False   Fri, 02 Jun 2023 00:55:51 +0800   Fri, 02 Jun 2023 00:35:08 +0800   KubeletHasSufficientPID      kubelet has sufficient PID available
+  Ready                True    Fri, 02 Jun 2023 00:55:51 +0800   Fri, 02 Jun 2023 00:35:08 +0800   KubeletReady                 kubelet is posting ready status. AppArmor enabled
+Addresses:
+  InternalIP:  192.168.88.141
+  Hostname:    k8s-worker-node2
+Capacity:
+  cpu:                4
+  ephemeral-storage:  28719140Ki
+  hugepages-1Gi:      0
+  hugepages-2Mi:      0
+  memory:             1998000Ki
+  pods:               110
+Allocatable:
+  cpu:                4
+  ephemeral-storage:  26467559381
+  hugepages-1Gi:      0
+  hugepages-2Mi:      0
+  memory:             1895600Ki
+  pods:               110
+System Info:
+  Machine ID:                 a566e2520c7242f6ac3116301a81a309
+  System UUID:                d5304d56-db5d-c439-e285-2fdd4e483123
+  Boot ID:                    cd18606f-c185-47d2-9e80-e9e0e37fe52c
+  Kernel Version:             6.2.0-20-generic
+  OS Image:                   Ubuntu 23.04
+  Operating System:           linux
+  Architecture:               amd64
+  Container Runtime Version:  docker://23.0.6
+  Kubelet Version:            v1.22.4
+  Kube-Proxy Version:         v1.22.4
+Non-terminated Pods:          (11 in total)
+  Namespace                   Name                                         CPU Requests  CPU Limits  Memory Requests  Memory Limits  Age
+  ---------                   ----                                         ------------  ----------  ---------------  -------------  ---
+  default                     kubia-0                                      0 (0%)        0 (0%)      0 (0%)           0 (0%)         2d
+  default                     kubia-1                                      0 (0%)        0 (0%)      0 (0%)           0 (0%)         2d
+  default                     kubia-2                                      0 (0%)        0 (0%)      0 (0%)           0 (0%)         2d
+  default                     nginx-588f7cc67f-qffdj                       0 (0%)        0 (0%)      0 (0%)           0 (0%)         2d
+  default                     pod-add-settime-capability                   0 (0%)        0 (0%)      0 (0%)           0 (0%)         2d
+  default                     pod-as-user-guest                            0 (0%)        0 (0%)      0 (0%)           0 (0%)         32h
+  default                     pod-privileged                               0 (0%)        0 (0%)      0 (0%)           0 (0%)         33h
+  default                     swagger-ui-5cdb6b69d5-rhvgv                  0 (0%)        0 (0%)      0 (0%)           0 (0%)         2d
+  ingress-nginx               ingress-nginx-controller-7ff6d8974d-787qs    100m (2%)     0 (0%)      90Mi (4%)        0 (0%)         2d
+  kube-system                 calico-node-kkttf                            250m (6%)     0 (0%)      0 (0%)           0 (0%)         2d
+  kube-system                 kube-proxy-zmgpq                             0 (0%)        0 (0%)      0 (0%)           0 (0%)         2d
+Allocated resources:
+  (Total limits may be over 100 percent, i.e., overcommitted.)
+  Resource           Requests   Limits
+  --------           --------   ------
+  cpu                350m (8%)  0 (0%)
+  memory             90Mi (4%)  0 (0%)
+  ephemeral-storage  0 (0%)     0 (0%)
+  hugepages-1Gi      0 (0%)     0 (0%)
+  hugepages-2Mi      0 (0%)     0 (0%)
+Events:
+  Type    Reason                   Age                From        Message
+  ----    ------                   ----               ----        -------
+  Normal  Starting                 46h                kube-proxy  
+  Normal  Starting                 46h                kubelet     Starting kubelet.
+  Normal  NodeAllocatableEnforced  46h                kubelet     Updated Node Allocatable limit across pods
+  Normal  NodeHasSufficientMemory  46h (x2 over 46h)  kubelet     Node k8s-worker-node2 status is now: NodeHasSufficientMemory
+  Normal  NodeHasNoDiskPressure    46h (x2 over 46h)  kubelet     Node k8s-worker-node2 status is now: NodeHasNoDiskPressure
+  Normal  NodeHasSufficientPID     46h (x2 over 46h)  kubelet     Node k8s-worker-node2 status is now: NodeHasSufficientPID
+  Normal  NodeReady                46h                kubelet     Node k8s-worker-node2 status is now: NodeReady
