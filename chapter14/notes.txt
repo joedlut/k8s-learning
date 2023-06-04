@@ -1,0 +1,4 @@
+root@joedlut-virtual-machine:/home/joedlut/k8s-learning/chapter14# k create -f pod-limits-too-big.yaml 
+The Pod "too-big" is invalid: spec.containers[0].resources.requests: Invalid value: "2": must be less than or equal to cpu limit
+
+
