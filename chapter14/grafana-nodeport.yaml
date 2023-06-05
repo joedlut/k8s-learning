@@ -6,7 +6,7 @@ metadata:
 spec:
   type: NodePort
   selector:
-    app: grafana
+    pod-template-hash: 657c9f55d4
   ports:
     - name: http
       port: 80
