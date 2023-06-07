@@ -1,0 +1,106 @@
+这个错误通常表示Metric Server无法从节点上获取指标数据，因为节点的TLS证书不包含任何IP SANs（Subject Alternative Names）。
+
+TLS证书是用于加密和验证Kubernetes API服务器和节点之间通信的一种安全协议。在TLS证书中，IP SANs用于指定证书适用的IP地址或主机名。如果节点的TLS证书不包含任何IP SANs，则Metric Server将无法验证证书，并且无法从节点上获取指标数据。
+
+要解决这个问题，您可以尝试以下步骤：
+
+重新生成节点的TLS证书
+
+如果节点的TLS证书不包含任何IP SANs，则您可以尝试重新生成节点的TLS证书，并在证书中包含节点的IP地址或主机名。您可以使用以下命令重新生成节点的TLS证书：
+
+复制
+kubeadm alpha certs renew node
+这将重新生成节点的TLS证书，并将其存储在/etc/kubernetes/pki目录中。
+
+更新Metric Server的配置
+
+如果您已经重新生成了节点的TLS证书，则需要更新Metric Server的配置，以便它可以验证新证书。您可以使用以下命令更新Metric Server的配置：
+
+复制
+kubectl edit deployment metrics-server -n kube-system
+在编辑器中，找到args部分，并添加以下参数：
+
+复制
+--kubelet-insecure-tls
+--kubelet-preferred-address-types=InternalIP,Hostname,InternalDNS,ExternalDNS,ExternalIP
+这将告诉Metric Server在与节点通信时使用不安全的TLS连接，并使用节点的IP地址、主机名或DNS名称作为首选地址类型。
+
+重启Metric Server
+
+如果您已经更新了Metric Server的配置，则需要重新启动Metric Server，以使更改生效。您可以使用以下命令重新启动Metric Server：
+
+复制
+kubectl rollout restart deployment metrics-server -n kube-system
+Kubernetes将自动重新启动Metric Server Pod，并尝试重新获取节点的指标数据。
+
+请注意，使用不安全的TLS连接可能会降低安全性。如果您的环境要求使用安全的TLS连接，请考虑使用包含正确IP SANs的TLS证书。
+------------------------------------------------------------------------------------------------------------------------------
+
+root@joedlut-virtual-machine:/home/joedlut/k8s-learning/chapter15# k get hpa
+NAME    REFERENCE          TARGETS   MINPODS   MAXPODS   REPLICAS   AGE
+kubia   Deployment/kubia   0%/30%    1         5         3          4m5s
+root@joedlut-virtual-machine:/home/joedlut/k8s-learning/chapter15# k get hpa
+NAME    REFERENCE          TARGETS   MINPODS   MAXPODS   REPLICAS   AGE
+kubia   Deployment/kubia   0%/30%    1         5         1          6m37s
+root@joedlut-virtual-machine:/home/joedlut/k8s-learning/chapter15# k get hpa
+NAME    REFERENCE          TARGETS   MINPODS   MAXPODS   REPLICAS   AGE
+kubia   Deployment/kubia   0%/30%    1         5         1          6m39s
+root@joedlut-virtual-machine:/home/joedlut/k8s-learning/chapter15# k get hpa
+NAME    REFERENCE          TARGETS   MINPODS   MAXPODS   REPLICAS   AGE
+kubia   Deployment/kubia   0%/30%    1         5         1          6m40s
+root@joedlut-virtual-machine:/home/joedlut/k8s-learning/chapter15# k describe hpa 
+Name:                                                  kubia
+Namespace:                                             default
+Labels:                                                <none>
+Annotations:                                           <none>
+CreationTimestamp:                                     Wed, 07 Jun 2023 23:02:46 +0800
+Reference:                                             Deployment/kubia
+Metrics:                                               ( current / target )
+  resource cpu on pods  (as a percentage of request):  0% (0) / 30%
+Min replicas:                                          1
+Max replicas:                                          5
+Deployment pods:                                       1 current / 1 desired
+Conditions:
+  Type            Status  Reason               Message
+  ----            ------  ------               -------
+  AbleToScale     True    ScaleDownStabilized  recent recommendations were higher than current one, applying the highest recent recommendation
+  ScalingActive   True    ValidMetricFound     the HPA was able to successfully calculate a replica count from cpu resource utilization (percentage of request)
+  ScalingLimited  False   DesiredWithinRange   the desired count is within the acceptable range
+Events:
+  Type     Reason                        Age                   From                       Message
+  ----     ------                        ----                  ----                       -------
+  Warning  FailedGetResourceMetric       2m46s (x2 over 3m1s)  horizontal-pod-autoscaler  failed to get cpu utilization: did not receive metrics for any ready pods
+  Warning  FailedComputeMetricsReplicas  2m46s (x2 over 3m1s)  horizontal-pod-autoscaler  invalid metrics (1 invalid out of 1), first error is: failed to get cpu utilization: did not receive metrics for any ready pods
+  Normal   SuccessfulRescale             91s                   horizontal-pod-autoscaler  New size: 1; reason: All metrics below target
+
+
+
+
+-------------------------------------------------------------------模拟压测--------------------------------------------------
+root@joedlut-virtual-machine:/home/joedlut/k8s-learning/chapter15# k describe hpa
+Name:                                                  kubia
+Namespace:                                             default
+Labels:                                                <none>
+Annotations:                                           <none>
+CreationTimestamp:                                     Wed, 07 Jun 2023 23:02:46 +0800
+Reference:                                             Deployment/kubia
+Metrics:                                               ( current / target )
+  resource cpu on pods  (as a percentage of request):  1% (1m) / 30%
+Min replicas:                                          1
+Max replicas:                                          5
+Deployment pods:                                       5 current / 5 desired
+Conditions:
+  Type            Status  Reason               Message
+  ----            ------  ------               -------
+  AbleToScale     True    ScaleDownStabilized  recent recommendations were higher than current one, applying the highest recent recommendation
+  ScalingActive   True    ValidMetricFound     the HPA was able to successfully calculate a replica count from cpu resource utilization (percentage of request)
+  ScalingLimited  False   DesiredWithinRange   the desired count is within the acceptable range
+Events:
+  Type     Reason                        Age                From                       Message
+  ----     ------                        ----               ----                       -------
+  Warning  FailedGetResourceMetric       11m (x2 over 12m)  horizontal-pod-autoscaler  failed to get cpu utilization: did not receive metrics for any ready pods
+  Warning  FailedComputeMetricsReplicas  11m (x2 over 12m)  horizontal-pod-autoscaler  invalid metrics (1 invalid out of 1), first error is: failed to get cpu utilization: did not receive metrics for any ready pods
+  Normal   SuccessfulRescale             10m                horizontal-pod-autoscaler  New size: 1; reason: All metrics below target
+  Normal   SuccessfulRescale             116s               horizontal-pod-autoscaler  New size: 4; reason: cpu resource utilization (percentage of request) above target
+  Normal   SuccessfulRescale             86s                horizontal-pod-autoscaler  New size: 5; reason: cpu resource utilization (percentage of request) above target
+root@joedlut-virtual-machine:/home/joedlut/k8s-learning/chapter15# 
