@@ -1,0 +1,11 @@
+root@joedlut-virtual-machine:/home/joedlut/k8s-learning/chapter16# k describe node joedlut-virtual-machine | grep Taints
+Taints:             node-role.kubernetes.io/master:NoSchedule
+
+root@joedlut-virtual-machine:/home/joedlut/k8s-learning/chapter16# k describe pod kube-proxy-ws5nt -n kube-system | grep -A6 Tolerations
+Tolerations:                 op=Exists
+                             node.kubernetes.io/disk-pressure:NoSchedule op=Exists
+                             node.kubernetes.io/memory-pressure:NoSchedule op=Exists
+                             node.kubernetes.io/network-unavailable:NoSchedule op=Exists
+                             node.kubernetes.io/not-ready:NoExecute op=Exists
+                             node.kubernetes.io/pid-pressure:NoSchedule op=Exists
+                             node.kubernetes.io/unreachable:NoExecute op=Exists
